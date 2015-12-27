@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html  ng-app="MyApp">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<base href='/'></base>
+	<title></title>
+
+	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<script   type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+<script   type="text/javascript" src="/socket.io/socket.io.js"></script>
+
+<script   type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-route.min.js"></script>
+
+<!-- services -->
+<script  type="text/javascript" src="app/services/authService.js" ></script>
+<script  type="text/javascript" src="app/services/userService.js" ></script>
+<script  type="text/javascript" src="app/services/storyService.js" ></script>
+
+<!-- controllsers -->
+<script   type="text/javascript" src="app/controllers/mainCtrl.js"></script>
+<script   type="text/javascript" src="app/controllers/userCtrl.js"></script>
+<script   type="text/javascript" src="app/controllers/storyCtrl.js"></script>
+
+
+<!-- Directives -->
+<script   type="text/javascript" src="app/directives/reverse.js"></script>
+
+<!-- routers -->
+<script   type="text/javascript" src="app/app.route.js"></script>
+
+<script   type="text/javascript" src="app/app.js"></script>
+
+<style type="text/css">
+	body {
+  min-height: 2000px;
+  padding-top: 70px;
+}
+
+</style>
+
+</head>
+
+
+<body ng-controller="MainController as main">
+
+	<header>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top" >
+      <div class="container">
+        <div class="navbar-header">    
+          <a class="navbar-brand" href="/">User Story</a>
+        </div>
+
+        <ul class="nav navbar=nav pull-left">
+        	<li><a href="/users"></a></li>
+        </ul>       
+        
+        <ul class="nav navbar-nav navbar-right">
+	        <li ng-if="!main.loggedIn"><a href="/login">Login</a></li>
+	        <li ng-if="!main.loggedIn"><a href="/signup">SignUp</a></li>
+	        <li ng-if="main.loggedIn"><a href="#">Hello {{main.user.username}}</a></li>
+	        <li ng-if="main.loggedIn"><a href="#" ng-click="main.doLogout()">Logout</a></li>
+        </ul>
+  
+      </div>
+    </nav>
+	</header>
+	<main class="container">
+	<div ng-view>
+	</div>
+	</main>
+</body>
+</html>
